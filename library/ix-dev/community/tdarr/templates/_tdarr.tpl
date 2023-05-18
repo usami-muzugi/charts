@@ -83,7 +83,9 @@ persistence:
     enabled: true
     type: {{ .Values.tdarrStorage.server.type }}
     datasetName: {{ .Values.tdarrStorage.server.datasetName | default "" }}
-    hostPath: {{ .Values.tdarrStorage.server.hostPath | default "" }}
+    {{- with .Values.tdarrStorage.server.hostPath }}
+    hostPath: {{ . }}
+    {{- end }}
     targetSelector:
       tdarr:
         tdarr:
@@ -92,7 +94,9 @@ persistence:
     enabled: true
     type: {{ .Values.tdarrStorage.configs.type }}
     datasetName: {{ .Values.tdarrStorage.configs.datasetName | default "" }}
-    hostPath: {{ .Values.tdarrStorage.configs.hostPath | default "" }}
+    {{- with .Values.tdarrStorage.configs.hostPath }}
+    hostPath: {{ . }}
+    {{- end }}
     targetSelector:
       tdarr:
         tdarr:
@@ -101,7 +105,9 @@ persistence:
     enabled: true
     type: {{ .Values.tdarrStorage.logs.type }}
     datasetName: {{ .Values.tdarrStorage.logs.datasetName | default "" }}
-    hostPath: {{ .Values.tdarrStorage.logs.hostPath | default "" }}
+    {{- with .Values.tdarrStorage.logs.hostPath }}
+    hostPath: {{ . }}
+    {{- end }}
     targetSelector:
       tdarr:
         tdarr:
@@ -110,7 +116,9 @@ persistence:
     enabled: true
     type: {{ .Values.tdarrStorage.transcodes.type }}
     datasetName: {{ .Values.tdarrStorage.transcodes.datasetName | default "" }}
-    hostPath: {{ .Values.tdarrStorage.transcodes.hostPath | default "" }}
+    {{- with .Values.tdarrStorage.transcodes.hostPath }}
+    hostPath: {{ . }}
+    {{- end }}
     medium: {{ .Values.tdarrStorage.transcodes.medium | default "" }}
     {{/* Size of the emptyDir */}}
     size: {{ .Values.tdarrStorage.transcodes.size | default "" }}
@@ -123,7 +131,8 @@ persistence:
     enabled: true
     type: {{ $storage.type }}
     datasetName: {{ $storage.datasetName | default "" }}
-    hostPath: {{ $storage.hostPath | default "" }}
+    {{- with .storage.hostPath | default }}
+    hostPath: {{ $- end }}
     targetSelector:
       tdarr:
         tdarr:

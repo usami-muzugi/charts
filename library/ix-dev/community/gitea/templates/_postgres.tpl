@@ -23,7 +23,9 @@ persistence:
     enabled: true
     type: {{ .Values.giteaStorage.pgData.type }}
     datasetName: {{ .Values.giteaStorage.pgData.datasetName | default "" }}
-    hostPath: {{ .Values.giteaStorage.pgData.hostPath | default "" }}
+    {{- with .Values.giteaStorage.pgData.hostPath }}
+    hostPath: {{ . }}
+    {{- end }}
     targetSelector:
       # Postgres pod
       postgres:
@@ -37,7 +39,9 @@ persistence:
     enabled: true
     type: {{ .Values.giteaStorage.pgBackup.type }}
     datasetName: {{ .Values.giteaStorage.pgBackup.datasetName | default "" }}
-    hostPath: {{ .Values.giteaStorage.pgBackup.hostPath | default "" }}
+    {{- with .Values.giteaStorage.pgBackup.hostPath }}
+    hostPath: {{ . }}
+    {{- end }}
     targetSelector:
       # Postgres backup pod
       postgresbackup:

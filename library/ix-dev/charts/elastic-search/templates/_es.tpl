@@ -86,7 +86,9 @@ persistence:
     enabled: true
     type: {{ .Values.esStorage.data.type }}
     datasetName: {{ .Values.esStorage.data.datasetName | default "" }}
-    hostPath: {{ .Values.esStorage.data.hostPath | default "" }}
+    {{- with .Values.esStorage.data.hostPath }}
+    hostPath: {{ . }}
+    {{- end }}
     targetSelector:
       es:
         es:

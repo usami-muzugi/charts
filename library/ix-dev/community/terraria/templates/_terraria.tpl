@@ -64,7 +64,9 @@ persistence:
     enabled: true
     type: {{ .Values.terrariaStorage.world.type }}
     datasetName: {{ .Values.terrariaStorage.world.datasetName | default "" }}
-    hostPath: {{ .Values.terrariaStorage.world.hostPath | default "" }}
+    {{- with .Values.terrariaStorage.world.hostPath }}
+    hostPath: {{ . }}
+    {{- end }}
     targetSelector:
       terraria:
         terraria:
@@ -73,7 +75,9 @@ persistence:
     enabled: true
     type: {{ .Values.terrariaStorage.plugins.type }}
     datasetName: {{ .Values.terrariaStorage.plugins.datasetName | default "" }}
-    hostPath: {{ .Values.terrariaStorage.plugins.hostPath | default "" }}
+    {{- with .Values.terrariaStorage.plugins.hostPath }}
+    hostPath: {{ . }}
+    {{- end }}
     targetSelector:
       terraria:
         terraria:

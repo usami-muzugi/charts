@@ -79,7 +79,9 @@ persistence:
     enabled: true
     type: {{ .Values.mcStorage.data.type }}
     datasetName: {{ .Values.mcStorage.data.datasetName | default "" }}
-    hostPath: {{ .Values.mcStorage.data.hostPath | default "" }}
+    {{- with .Values.mcStorage.data.hostPath }}
+    hostPath: {{ . }}
+    {{- end }}
     targetSelector:
       minecraft:
         minecraft:
@@ -89,7 +91,9 @@ persistence:
     enabled: true
     type: {{ $storage.type }}
     datasetName: {{ $storage.datasetName | default "" }}
-    hostPath: {{ $storage.hostPath | default "" }}
+    {{- with $storage.hostPath }}
+    hostPath: {{ . }}
+    {{- end }}
     targetSelector:
       minecraft:
         minecraft:

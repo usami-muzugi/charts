@@ -82,7 +82,9 @@ persistence:
     enabled: true
     type: {{ .Values.clamavStorage.sigdb.type }}
     datasetName: {{ .Values.clamavStorage.sigdb.datasetName | default "" }}
-    hostPath: {{ .Values.clamavStorage.sigdb.hostPath | default "" }}
+    {{- with .Values.clamavStorage.sigdb.hostPath }}
+    hostPath: {{ . }}
+    {{- end }}
     targetSelector:
       clamav:
         clamav:
@@ -91,7 +93,9 @@ persistence:
     enabled: true
     type: {{ .Values.clamavStorage.scandir.type }}
     datasetName: {{ .Values.clamavStorage.scandir.datasetName | default "" }}
-    hostPath: {{ .Values.clamavStorage.scandir.hostPath | default "" }}
+    {{- with .Values.clamavStorage.scandir.hostPath }}
+    hostPath: {{ . }}
+    {{- end }}
     targetSelector:
       clamav:
         clamav:

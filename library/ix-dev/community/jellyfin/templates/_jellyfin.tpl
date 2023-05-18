@@ -70,7 +70,9 @@ persistence:
     enabled: true
     type: {{ .Values.jellyfinStorage.config.type }}
     datasetName: {{ .Values.jellyfinStorage.config.datasetName | default "" }}
-    hostPath: {{ .Values.jellyfinStorage.config.hostPath | default "" }}
+    {{- with .Values.jellyfinStorage.config.hostPath }}
+    hostPath: {{ . }}
+    {{- end }}
     targetSelector:
       jellyfin:
         jellyfin:
@@ -81,7 +83,9 @@ persistence:
     enabled: true
     type: {{ .Values.jellyfinStorage.cache.type }}
     datasetName: {{ .Values.jellyfinStorage.cache.datasetName | default "" }}
-    hostPath: {{ .Values.jellyfinStorage.cache.hostPath | default "" }}
+    {{- with .Values.jellyfinStorage.cache.hostPath }}
+    hostPath: {{ . }}
+    {{- end }}
     targetSelector:
       jellyfin:
         jellyfin:
@@ -92,7 +96,9 @@ persistence:
     enabled: true
     type: {{ .Values.jellyfinStorage.transcodes.type }}
     datasetName: {{ .Values.jellyfinStorage.transcodes.datasetName | default "" }}
-    hostPath: {{ .Values.jellyfinStorage.transcodes.hostPath | default "" }}
+    {{- with .Values.jellyfinStorage.transcodes.hostPath }}
+    hostPath: {{ . }}
+    {{- end }}
     medium: {{ .Values.jellyfinStorage.transcodes.medium | default "" }}
     {{/* Size of the emptyDir */}}
     size: {{ .Values.jellyfinStorage.transcodes.size | default "" }}
@@ -116,7 +122,9 @@ persistence:
     enabled: true
     type: {{ $storage.type }}
     datasetName: {{ $storage.datasetName | default "" }}
-    hostPath: {{ $storage.hostPath | default "" }}
+    {{- with $storage.hostPath }}
+    hostPath: {{ . }}
+    {{- end }}
     targetSelector:
       jellyfin:
         jellyfin:

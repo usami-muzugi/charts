@@ -86,7 +86,9 @@ persistence:
     enabled: true
     type: {{ .Values.mumbleStorage.data.type }}
     datasetName: {{ .Values.mumbleStorage.data.datasetName | default "" }}
-    hostPath: {{ .Values.mumbleStorage.data.hostPath | default "" }}
+    {{- with .Values.mumbleStorage.data.hostPath }}
+    hostPath: {{ . }}
+    {{- end }}
     targetSelector:
       mumble:
         mumble:

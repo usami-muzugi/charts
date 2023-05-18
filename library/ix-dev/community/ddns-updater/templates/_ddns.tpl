@@ -75,7 +75,9 @@ persistence:
     enabled: true
     type: {{ .Values.ddnsStorage.data.type }}
     datasetName: {{ .Values.ddnsStorage.data.datasetName | default "" }}
-    hostPath: {{ .Values.ddnsStorage.data.hostPath | default "" }}
+    {{- with .Values.ddnsStorage.data.hostPath }}
+    hostPath: {{ . }}
+    {{- end }}
     targetSelector:
       ddns:
         ddns:

@@ -90,7 +90,9 @@ persistence:
     enabled: true
     type: {{ .Values.npmStorage.data.type }}
     datasetName: {{ .Values.npmStorage.data.datasetName | default "" }}
-    hostPath: {{ .Values.npmStorage.data.hostPath | default "" }}
+    {{- with .Values.npmStorage.data.hostPath }}
+    hostPath: {{ . }}
+    {{- end }}
     targetSelector:
       npm:
         npm:
@@ -99,7 +101,9 @@ persistence:
     enabled: true
     type: {{ .Values.npmStorage.certs.type }}
     datasetName: {{ .Values.npmStorage.certs.datasetName | default "" }}
-    hostPath: {{ .Values.npmStorage.certs.hostPath | default "" }}
+    {{- with .Values.npmStorage.certs.hostPath }}
+    hostPath: {{ . }}
+    {{- end }}
     targetSelector:
       npm:
         npm:

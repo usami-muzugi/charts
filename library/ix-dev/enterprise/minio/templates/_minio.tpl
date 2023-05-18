@@ -104,7 +104,9 @@ persistence:
     enabled: true
     type: {{ $storage.type }}
     datasetName: {{ $storage.datasetName | default "" }}
-    hostPath: {{ $storage.hostPath | default "" }}
+    {{- with $storage.hostPath }}
+    hostPath: {{ . }}
+    {{- end }}
     targetSelector:
       minio:
         minio:

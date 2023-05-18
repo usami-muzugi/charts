@@ -21,7 +21,9 @@ persistence:
     enabled: true
     type: {{ .Values.vaultwardenStorage.pgData.type }}
     datasetName: {{ .Values.vaultwardenStorage.pgData.datasetName | default "" }}
-    hostPath: {{ .Values.vaultwardenStorage.pgData.hostPath | default "" }}
+    {{- with .Values.vaultwardenStorage.pgData.hostPath }}
+    hostPath: {{ . }}
+    {{- end }}
     targetSelector:
       # Postgres pod
       postgres:
@@ -35,7 +37,9 @@ persistence:
     enabled: true
     type: {{ .Values.vaultwardenStorage.pgBackup.type }}
     datasetName: {{ .Values.vaultwardenStorage.pgBackup.datasetName | default "" }}
-    hostPath: {{ .Values.vaultwardenStorage.pgBackup.hostPath | default "" }}
+    {{- with .Values.vaultwardenStorage.pgBackup.hostPath }}
+    hostPath: {{ . }}
+    {{- end }}
     targetSelector:
       # Postgres backup pod
       postgresbackup:

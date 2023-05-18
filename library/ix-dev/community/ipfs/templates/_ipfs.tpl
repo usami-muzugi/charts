@@ -115,7 +115,9 @@ persistence:
     enabled: true
     type: {{ .Values.ipfsStorage.data.type }}
     datasetName: {{ .Values.ipfsStorage.data.datasetName | default "" }}
-    hostPath: {{ .Values.ipfsStorage.data.hostPath | default "" }}
+    {{- with .Values.ipfsStorage.data.hostPath }}
+    hostPath: {{ . }}
+    {{- end }}
     targetSelector:
       ipfs:
         ipfs:
@@ -128,7 +130,9 @@ persistence:
     enabled: true
     type: {{ .Values.ipfsStorage.staging.type }}
     datasetName: {{ .Values.ipfsStorage.staging.datasetName | default "" }}
-    hostPath: {{ .Values.ipfsStorage.staging.hostPath | default "" }}
+    {{- with .Values.ipfsStorage.staging.hostPath }}
+    hostPath: {{ . }}
+    {{- end }}
     targetSelector:
       ipfs:
         ipfs:
@@ -146,5 +150,4 @@ persistence:
           mountPath: /init-config.sh
           readOnly: true
           subPath: init-config.sh
-
 {{- end -}}

@@ -97,7 +97,9 @@ persistence:
     enabled: true
     type: {{ .Values.prometheusStorage.data.type }}
     datasetName: {{ .Values.prometheusStorage.data.datasetName | default "" }}
-    hostPath: {{ .Values.prometheusStorage.data.hostPath | default "" }}
+    {{- with .Values.prometheusStorage.data.hostPath }}
+    hostPath: {{ . }}
+    {{- end }}
     targetSelector:
       prometheus:
         prometheus:
@@ -108,7 +110,9 @@ persistence:
     enabled: true
     type: {{ .Values.prometheusStorage.config.type }}
     datasetName: {{ .Values.prometheusStorage.config.datasetName | default "" }}
-    hostPath: {{ .Values.prometheusStorage.config.hostPath | default "" }}
+    {{- with .Values.prometheusStorage.config.hostPath }}
+    hostPath: {{ . }}
+    {{- end }}
     targetSelector:
       prometheus:
         prometheus:

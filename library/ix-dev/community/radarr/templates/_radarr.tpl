@@ -68,7 +68,9 @@ persistence:
     enabled: true
     type: {{ .Values.radarrStorage.config.type }}
     datasetName: {{ .Values.radarrStorage.config.datasetName | default "" }}
-    hostPath: {{ .Values.radarrStorage.config.hostPath | default "" }}
+    {{- with .Values.radarrStorage.config.hostPath }}
+    hostPath: {{ . }}
+    {{- end }}
     targetSelector:
       radarr:
         radarr:
@@ -87,7 +89,9 @@ persistence:
     enabled: true
     type: {{ $storage.type }}
     datasetName: {{ $storage.datasetName | default "" }}
-    hostPath: {{ $storage.hostPath | default "" }}
+    {{- with $storage.hostPath }}
+    hostPath: {{ . }}
+    {{- end }}
     targetSelector:
       radarr:
         radarr:

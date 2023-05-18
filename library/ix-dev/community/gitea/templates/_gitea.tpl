@@ -79,7 +79,9 @@ persistence:
     enabled: true
     type: {{ .Values.giteaStorage.data.type }}
     datasetName: {{ .Values.giteaStorage.data.datasetName | default "" }}
-    hostPath: {{ .Values.giteaStorage.data.hostPath | default "" }}
+    {{- with .Values.giteaStorage.data.hostPath }}
+    hostPath: {{ . }}
+    {{- end }}
     targetSelector:
       gitea:
         gitea:
@@ -90,7 +92,9 @@ persistence:
     enabled: true
     type: {{ .Values.giteaStorage.config.type }}
     datasetName: {{ .Values.giteaStorage.config.datasetName | default "" }}
-    hostPath: {{ .Values.giteaStorage.config.hostPath | default "" }}
+    {{- with .Values.giteaStorage.config.hostPath }}
+    hostPath: {{ . }}
+    {{- end }}
     targetSelector:
       gitea:
         gitea:

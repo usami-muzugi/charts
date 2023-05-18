@@ -124,7 +124,9 @@ persistence:
     enabled: true
     type: {{ .Values.chiaStorage.data.type }}
     datasetName: {{ .Values.chiaStorage.data.datasetName | default "" }}
-    hostPath: {{ .Values.chiaStorage.data.hostPath | default "" }}
+    {{- with .Values.chiaStorage.data.hostPath }}
+    hostPath: {{ . }}
+    {{- end }}
     targetSelector:
       chia:
         chia:
@@ -133,7 +135,9 @@ persistence:
     enabled: true
     type: {{ .Values.chiaStorage.plots.type }}
     datasetName: {{ .Values.chiaStorage.plots.datasetName | default "" }}
-    hostPath: {{ .Values.chiaStorage.plots.hostPath | default "" }}
+    {{- with .Values.chiaStorage.plots.hostPath }}
+    hostPath: {{ . }}
+    {{- end }}
     targetSelector:
       chia:
         chia:
@@ -152,7 +156,9 @@ persistence:
     enabled: true
     type: {{ $vol.type }}
     datasetName: {{ $vol.datasetName | default "" }}
-    hostPath: {{ $vol.hostPath | default "" }}
+    {{- with $vol.hostPath }}
+    hostPath: {{ . }}
+    {{- end }}
     targetSelector:
       chia:
         chia:

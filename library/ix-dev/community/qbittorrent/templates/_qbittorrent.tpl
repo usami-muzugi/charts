@@ -86,7 +86,9 @@ persistence:
     enabled: true
     type: {{ .Values.qbitStorage.config.type }}
     datasetName: {{ .Values.qbitStorage.config.datasetName | default "" }}
-    hostPath: {{ .Values.qbitStorage.config.hostPath | default "" }}
+    {{- with .Values.qbitStorage.config.hostPath }}
+    hostPath: {{ . }}
+    {{- end }}
     targetSelector:
       qbittorrent:
         qbittorrent:
@@ -97,7 +99,9 @@ persistence:
     enabled: true
     type: {{ .Values.qbitStorage.downloads.type }}
     datasetName: {{ .Values.qbitStorage.downloads.datasetName | default "" }}
-    hostPath: {{ .Values.qbitStorage.downloads.hostPath | default "" }}
+    {{- with .Values.qbitStorage.downloads.hostPath }}
+    hostPath: {{ . }}
+    {{- end }}
     targetSelector:
       qbittorrent:
         qbittorrent:

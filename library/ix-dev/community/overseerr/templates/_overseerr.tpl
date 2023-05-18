@@ -67,7 +67,9 @@ persistence:
     enabled: true
     type: {{ .Values.overseerrStorage.config.type }}
     datasetName: {{ .Values.overseerrStorage.config.datasetName | default "" }}
-    hostPath: {{ .Values.overseerrStorage.config.hostPath | default "" }}
+    {{- with .Values.overseerrStorage.config.hostPath }}
+    hostPath: {{  }}
+    {{- end }}
     targetSelector:
       overseerr:
         overseerr:

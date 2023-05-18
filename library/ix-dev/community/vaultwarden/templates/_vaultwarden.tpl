@@ -88,7 +88,9 @@ persistence:
     enabled: true
     type: {{ .Values.vaultwardenStorage.data.type }}
     datasetName: {{ .Values.vaultwardenStorage.data.datasetName | default "" }}
-    hostPath: {{ .Values.vaultwardenStorage.data.hostPath | default "" }}
+    {{- with .Values.vaultwardenStorage.data.hostPath }}
+    hostPath: {{ . }}
+    {{- end }}
     targetSelector:
       vaultwarden:
         vaultwarden:

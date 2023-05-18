@@ -21,7 +21,9 @@ persistence:
     enabled: true
     type: {{ .Values.minioLogging.logsearch.pgData.type }}
     datasetName: {{ .Values.minioLogging.logsearch.pgData.datasetName | default "" }}
-    hostPath: {{ .Values.minioLogging.logsearch.pgData.hostPath | default "" }}
+    {{- with .Values.minioLogging.logsearch.pgData.hostPath }}
+    hostPath: {{ . }}
+    {{- end }}
     targetSelector:
       # Postgres pod
       postgres:
@@ -35,7 +37,9 @@ persistence:
     enabled: true
     type: {{ .Values.minioLogging.logsearch.pgBackup.type }}
     datasetName: {{ .Values.minioLogging.logsearch.pgBackup.datasetName | default "" }}
-    hostPath: {{ .Values.minioLogging.logsearch.pgBackup.hostPath | default "" }}
+    {{- with .Values.minioLogging.logsearch.pgBackup.hostPath }}
+    hostPath: {{ . }}
+    {{- end }}
     targetSelector:
       # Postgres backup pod
       postgresbackup:

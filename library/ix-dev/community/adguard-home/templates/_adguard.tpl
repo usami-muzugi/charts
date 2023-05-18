@@ -80,7 +80,9 @@ persistence:
     enabled: true
     type: {{ .Values.adguardStorage.work.type }}
     datasetName: {{ .Values.adguardStorage.work.datasetName | default "" }}
-    hostPath: {{ .Values.adguardStorage.work.hostPath | default "" }}
+    {{- with .Values.adguardStorage.work.hostPath }}
+    hostPath: {{ . }}
+    {{- end }}
     targetSelector:
       adguard:
         adguard:
@@ -93,7 +95,9 @@ persistence:
     enabled: true
     type: {{ .Values.adguardStorage.conf.type }}
     datasetName: {{ .Values.adguardStorage.conf.datasetName | default "" }}
-    hostPath: {{ .Values.adguardStorage.conf.hostPath | default "" }}
+    {{- with .Values.adguardStorage.conf.hostPath }}
+    hostPath: {{ . }}
+    {{- end }}
     targetSelector:
       adguard:
         adguard:

@@ -68,7 +68,9 @@ persistence:
     enabled: true
     type: {{ .Values.lidarrStorage.config.type }}
     datasetName: {{ .Values.lidarrStorage.config.datasetName | default "" }}
-    hostPath: {{ .Values.lidarrStorage.config.hostPath | default "" }}
+    {{- with .Values.lidarrStorage.config.hostPath }}
+    hostPath: {{ . }}
+    {{- end }}
     targetSelector:
       lidarr:
         lidarr:
@@ -87,7 +89,9 @@ persistence:
     enabled: true
     type: {{ $storage.type }}
     datasetName: {{ $storage.datasetName | default "" }}
-    hostPath: {{ $storage.hostPath | default "" }}
+    {{- with $storage.hostPath }}
+    hostPath: {{ . }}
+    {{- end }}
     targetSelector:
       lidarr:
         lidarr:

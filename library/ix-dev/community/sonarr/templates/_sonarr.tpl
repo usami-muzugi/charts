@@ -68,7 +68,9 @@ persistence:
     enabled: true
     type: {{ .Values.sonarrStorage.config.type }}
     datasetName: {{ .Values.sonarrStorage.config.datasetName | default "" }}
-    hostPath: {{ .Values.sonarrStorage.config.hostPath | default "" }}
+    {{- with .Values.sonarrStorage.config.hostPath }}
+    hostPath: {{ . }}
+    {{- end }}
     targetSelector:
       sonarr:
         sonarr:
@@ -87,7 +89,9 @@ persistence:
     enabled: true
     type: {{ $storage.type }}
     datasetName: {{ $storage.datasetName | default "" }}
-    hostPath: {{ $storage.hostPath | default "" }}
+    {{- with $storage.hostPath }}
+    hostPath: {{ . }}
+    {{- end }}
     targetSelector:
       sonarr:
         sonarr:
