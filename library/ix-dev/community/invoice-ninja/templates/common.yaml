@@ -1,0 +1,14 @@
+{{- include "ix.v1.common.loader.init" . -}}
+
+{{/* Merge the templates with Values */}}
+{{- $_ := mustMergeOverwrite .Values (include "ninja.secret" $ | fromYaml) -}}
+{{- $_ := mustMergeOverwrite .Values (include "ninja.configmap" $ | fromYaml) -}}
+{{- $_ := mustMergeOverwrite .Values (include "ninja.workload" $ | fromYaml) -}}
+{{- $_ := mustMergeOverwrite .Values (include "ninja.nginx" $ | fromYaml) -}}
+{{- $_ := mustMergeOverwrite .Values (include "ninja.service" $ | fromYaml) -}}
+{{- $_ := mustMergeOverwrite .Values (include "ninja.persistence" $ | fromYaml) -}}
+
+{{/* Create the configmap for portal manually*/}}
+{{- include "ninja.portal" $ -}}
+
+{{- include "ix.v1.common.loader.apply" . -}}

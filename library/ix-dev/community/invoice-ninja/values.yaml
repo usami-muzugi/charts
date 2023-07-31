@@ -1,0 +1,23 @@
+image:
+  repository: invoiceninja/invoiceninja
+  pullPolicy: IfNotPresent
+  tag: 5.6.23
+
+resources:
+  limits:
+    cpu: 4000m
+    memory: 8Gi
+
+ninjaConfig:
+  additionalEnvs: []
+ninjaNetwork:
+  webPort: 30045
+  hostNetwork: false
+# ninjaRunAs:
+#   user: 568
+#   group: 568
+# ninjaStorage:
+#   config:
+#     type: ixVolume
+#     datasetName: config
+#   additionalStorages: []
